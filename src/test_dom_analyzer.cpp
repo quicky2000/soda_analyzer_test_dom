@@ -35,7 +35,7 @@ namespace osm_diff_analyzer_test_dom
   }
 
   //------------------------------------------------------------------------------
-  void test_dom_analyzer::analyze(const osm_diff_analyzer_if::t_dom_tree & p_node)
+  void test_dom_analyzer::analyze(const osm_diff_analyzer_dom_if::t_dom_tree & p_node)
   {
     std::cout << "Level : " << m_level << std::endl ;
     std::string l_tab(m_level,'|');
