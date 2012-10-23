@@ -16,6 +16,7 @@ namespace osm_diff_analyzer_test_dom
     const std::string & get_input_type(void)const;
     const std::string & get_output_type(void)const;
     const std::string & get_type(void)const;
+    inline void init(void){};
    // End if methods inherited from dom_analyzer_if
   private:
     std::string m_name;
