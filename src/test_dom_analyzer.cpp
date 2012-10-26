@@ -4,10 +4,11 @@
 namespace osm_diff_analyzer_test_dom
 {
   //------------------------------------------------------------------------------
-  test_dom_analyzer::test_dom_analyzer(const std::string & p_name):
-    m_name(p_name),
+  test_dom_analyzer::test_dom_analyzer(const osm_diff_analyzer_if::module_configuration * p_conf):
+    m_name(p_conf->get_name()),
     m_level(0)
   {
+    delete p_conf;
   }
 
   //------------------------------------------------------------------------------

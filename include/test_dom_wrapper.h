@@ -12,7 +12,7 @@ namespace osm_diff_analyzer_test_dom
   public:
     static const char * get_api_version(void);
     static uint32_t get_api_size(void);
-    static osm_diff_analyzer_if::general_analyzer_if * create_test_dom_analyzer(const std::string & p_name);
+    static osm_diff_analyzer_if::general_analyzer_if * create_test_dom_analyzer(const osm_diff_analyzer_if::module_configuration * p_conf);
     static osm_diff_analyzer_if::analyzer_description_if * get_test_dom_description(void);
     static void require_common_api(osm_diff_analyzer_if::module_library_if::t_register_function);
     static void cleanup(void);

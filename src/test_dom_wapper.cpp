@@ -7,9 +7,9 @@
 namespace osm_diff_analyzer_test_dom
 {
   //----------------------------------------------------------------------------
-  osm_diff_analyzer_if::general_analyzer_if * test_dom_wrapper::create_test_dom_analyzer(const std::string & p_name)
+  osm_diff_analyzer_if::general_analyzer_if * test_dom_wrapper::create_test_dom_analyzer(const osm_diff_analyzer_if::module_configuration * p_conf)
   {
-    return new test_dom_analyzer(p_name);
+    return new test_dom_analyzer(p_conf);
   }
 
   //----------------------------------------------------------------------------

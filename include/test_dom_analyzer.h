@@ -9,7 +9,7 @@ namespace osm_diff_analyzer_test_dom
   class test_dom_analyzer: public osm_diff_analyzer_dom_if::dom_analyzer_if
   {
   public:
-    test_dom_analyzer(const std::string & p_name);
+    test_dom_analyzer(const osm_diff_analyzer_if::module_configuration * p_conf);
     // Methods inherited from dom_analyzer_if
     void analyze(const osm_diff_analyzer_dom_if::t_dom_tree & p_tree);
     const std::string & get_name(void)const;
