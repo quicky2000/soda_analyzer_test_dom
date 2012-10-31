@@ -3,6 +3,7 @@
 
 #include "dom_analyzer_if.h"
 #include "test_dom_analyzer_description.h"
+#include "module_configuration.h"
 
 namespace osm_diff_analyzer_test_dom
 {
@@ -16,7 +17,7 @@ namespace osm_diff_analyzer_test_dom
     const std::string & get_input_type(void)const;
     const std::string & get_output_type(void)const;
     const std::string & get_type(void)const;
-    inline void init(void){};
+    inline void init(const osm_diff_analyzer_if::osm_diff_state * p_diff_state){};
    // End if methods inherited from dom_analyzer_if
   private:
     std::string m_name;

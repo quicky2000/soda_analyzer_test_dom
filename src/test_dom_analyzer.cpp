@@ -8,7 +8,6 @@ namespace osm_diff_analyzer_test_dom
     m_name(p_conf->get_name()),
     m_level(0)
   {
-    delete p_conf;
   }
 
   //------------------------------------------------------------------------------
