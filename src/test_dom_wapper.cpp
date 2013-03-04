@@ -20,6 +20,9 @@
 #include "test_dom_wrapper.h"
 #include "test_dom_analyzer_description.h"
 #include "test_dom_analyzer.h"
+#include "quicky_exception.h"
+#include "test_dom_common_api.h"
+#include <sstream>
 #include <cassert>
 #include <iostream>
 
@@ -28,7 +31,7 @@ namespace osm_diff_analyzer_test_dom
   //----------------------------------------------------------------------------
   osm_diff_analyzer_if::general_analyzer_if * test_dom_wrapper::create_test_dom_analyzer(const osm_diff_analyzer_if::module_configuration * p_conf)
   {
-    return new test_dom_analyzer(p_conf);
+    return new test_dom_analyzer(p_conf,*m_common_api);
   }
 
   //----------------------------------------------------------------------------
@@ -50,23 +53,32 @@ namespace osm_diff_analyzer_test_dom
   }
 
   //----------------------------------------------------------------------------
-  void test_dom_wrapper::require_common_api(osm_diff_analyzer_if::module_library_if::t_register_function)
+  void test_dom_wrapper::require_common_api(osm_diff_analyzer_if::module_library_if::t_register_function p_func)
   {
-    // Empty implementation as we don`t need common API
+    m_common_api = new test_dom_common_api(p_func);
   }
 
   //----------------------------------------------------------------------------
   void test_dom_wrapper::cleanup(void)
   {
-    //Nothing to clean
+    delete m_common_api;
   }
+
+  test_dom_common_api * test_dom_wrapper::m_common_api = NULL;
 
   extern "C"
   {
     void register_module(uintptr_t* p_api,uint32_t p_api_size)
     {
-      assert(p_api_size == MODULE_LIBRARY_IF_API_SIZE);
+      if(p_api_size != MODULE_LIBRARY_IF_API_SIZE)
+	{
+	  std::stringstream l_stream;
+	  l_stream << "p_api_size != MODULE_LIBRARY_IF_API_SIZE : " << p_api_size << " < " << MODULE_LIBRARY_IF_API_SIZE << ". Please use a newver version of saoda";
+	  throw quicky_exception::quicky_logic_exception(l_stream.str(),__LINE__,__FILE__);
+	}
+#ifdef DEBUG
       std::cout << "Registration of test_dom analyzer API " << std::endl ;
+#endif
       p_api[osm_diff_analyzer_if::module_library_if::GET_API_VERSION] = (uintptr_t)test_dom_wrapper::get_api_version;
       p_api[osm_diff_analyzer_if::module_library_if::GET_API_SIZE] = (uintptr_t)test_dom_wrapper::get_api_size;
       p_api[osm_diff_analyzer_if::module_library_if::GET_DESCRIPTION] = (uintptr_t)test_dom_wrapper::get_test_dom_description;

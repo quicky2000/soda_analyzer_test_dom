@@ -26,6 +26,8 @@
 
 namespace osm_diff_analyzer_test_dom
 {
+  class test_dom_common_api;
+
   class test_dom_wrapper
   {
   public:
@@ -36,6 +38,7 @@ namespace osm_diff_analyzer_test_dom
     static void require_common_api(osm_diff_analyzer_if::module_library_if::t_register_function);
     static void cleanup(void);
   private:
+    static test_dom_common_api *m_common_api;
   };
 
 }
