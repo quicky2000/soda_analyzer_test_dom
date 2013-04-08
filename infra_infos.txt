@@ -1,4 +1,4 @@
-depend:osm_diff_analyzer_dom_if
+depend:soda_analyzer_dom_if
 CFLAGS:-Wall -g -ansi -pedantic
 LDFLAGS:
 
